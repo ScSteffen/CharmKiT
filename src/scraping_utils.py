@@ -120,6 +120,13 @@ def time_average(df, column_names, N, t_final, dt):
 
 
 def extract_time_step(log_file_path):
+    """
+    Extracts the time step value from a log file.
+    Args:
+        log_file_path (str): The path to the log file.
+    Returns:
+        float: The extracted time step value, or None if no matching line is found.
+    """
     search_string = "Corresponding maximal time-step:"
     float_value = None
 
@@ -135,8 +142,9 @@ def extract_time_step(log_file_path):
                     break  # Assuming there's only one such line in the log file
 
     if float_value is not None:
-        print(f"Extracted float value: {float_value}")
+        # print(f"Extracted float value (time step): {float_value}")
+        return float_value
     else:
-        print("No matching line found.")
-
+        print("No matching line found to textract time step. Critical error.")
+        exit(1)
     return float_value

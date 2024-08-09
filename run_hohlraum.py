@@ -75,7 +75,7 @@ def main():
         call_models(
             design_params, hpc_operation_count=1, singularity_hpc=singularity_hpc
         )
-        #wait_for_slurm_jobs(user=user, sleep_interval=10)
+        # wait_for_slurm_jobs(user=user, sleep_interval=10)
 
         if user:
             print("Executing slurm scripts with user " + user)
@@ -85,7 +85,9 @@ def main():
             print("Username could not be read from slurm config file.")
         qois = call_models(design_params, hpc_operation_count=2)
     else:
-        qois = call_models(design_params, hpc_operation_count=0)
+        qois = call_models(
+            design_params, hpc_operation_count=0, singularity_hpc=singularity_hpc
+        )
 
     print("design parameter matrix")
     print(design_param_names)

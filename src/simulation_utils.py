@@ -6,7 +6,13 @@ from src.general_utils import get_user_job_count
 
 def run_cpp_simulation(config_file):
     # Path to the C++ executable
-    cpp_executable_path = "./KiT-RT/build/KiT-RT"
+    print("here")
+    current_path = os.getcwd()
+
+    # Print the current path
+    print(f"The current working directory is: {current_path}")
+    print(config_file)
+    cpp_executable_path = "mpirun -np 4 ./KiT-RT/build/KiT-RT"
 
     # Command to run the C++ executable with the provided config file
     command = [cpp_executable_path, config_file]

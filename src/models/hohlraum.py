@@ -1,4 +1,5 @@
 import os
+import numpy as np
 
 from src.config_utils import (
     generate_log_filename,
@@ -10,7 +11,7 @@ from src.config_utils import (
     write_slurm_file,
 )
 from src.scraping_utils import read_csv_file, get_integrated_hohlraum_probe_moments
-from src.simulation_utils import run_cpp_simulation_containerized
+from src.simulation_utils import run_cpp_simulation_containerized, run_cpp_simulation
 
 
 def model(parameters):
@@ -109,8 +110,14 @@ def model(parameters):
 
     write_config_file(parameters=kitrt_parameters, output_file_path=generated_cfg_file)
     if hpc_operation == 0:
+        print(singularity_hpc)
         # Step 5: Run the C++ simulation
-        run_cpp_simulation_containerized(generated_cfg_file)
+        if singularity_hpc == 1:
+            print("Running simulation with singularity")
+            run_cpp_simulation_containerized(generated_cfg_file)
+        else:
+            print("Running simulation without singularity")
+            run_cpp_simulation(generated_cfg_file)
     elif hpc_operation == 1:
         # Write slurm file
         write_slurm_file(
