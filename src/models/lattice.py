@@ -90,10 +90,10 @@ def model(parameters):
     if hpc_operation == 0:
         # Step 5: Run the C++ simulation
         if singularity_hpc == 1:
-            print("Running simulation with singularity")
+            print("Running lattice simulation with singularity")
             run_cpp_simulation_containerized(generated_cfg_file)
         else:
-            print("Running simulation without singularity")
+            print("Running lattice simulation without singularity")
             run_cpp_simulation(generated_cfg_file)
     elif hpc_operation == 1:
         # Write slurm file
