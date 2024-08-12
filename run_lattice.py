@@ -59,15 +59,15 @@ def main():
     # Define parameter ranges
     # characteristic length of the cells
     parameter_range_n_cell = [
-        # 0.05,
-        # 0.025,
-        0.05,
-        # 0.0075,
-        # 0.005,
-        # 0.0025,
-        # 0.001,
-        # 0.0075,
-        # 0.0005,
+        #0.05,
+        #0.025,
+        #0.01,
+        #0.0075,
+        #0.005,
+        #0.0025,
+        #0.001,
+        0.00075,
+        0.0005,
     ]
     #    0.0075,
     #    0.005,
@@ -76,7 +76,7 @@ def main():
     # ]
     # GAUSS LEGENDRE  2D quadrature order (MUST BE EVEN)
 
-    parameter_range_quad_order = [4]  # [4, 8, 12, 16, 20, 24, 28]
+    parameter_range_quad_order = [4, 8] #[16,24,32,40,48,56,64,72,80]  # [4, 8, 12, 16, 20, 24, 28]
     #    20,
     #    30,
     #    40,

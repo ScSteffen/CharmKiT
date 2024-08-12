@@ -406,7 +406,7 @@ def write_slurm_file(output_slurm_dir, unique_name, subfolder, singularity=True)
             )
 
         else:
-            lines[-1] = "./KiT-RT/build/KiT-RT " + subfolder + unique_name + ".cfg\n"
+            lines[-1] = "srun ./KiT-RT/build/KiT-RT " + subfolder + unique_name + ".cfg\n"
 
     # Write the modified lines to the output file
     with open(output_slurm_dir + unique_name + ".sh", "w") as file:
