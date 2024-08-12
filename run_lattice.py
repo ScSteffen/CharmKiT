@@ -127,7 +127,10 @@ def main():
         qois = call_models(design_params, hpc_operation_count=2)
     else:
         qois = call_models(
-            design_params, hpc_operation_count=0, rectangular_mesh=rectangular_mesh
+            design_params,
+            hpc_operation_count=0,
+            rectangular_mesh=rectangular_mesh,
+            singularity_hpc=singularity_hpc,
         )
 
     print("design parameter matrix")
