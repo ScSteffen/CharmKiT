@@ -5,13 +5,21 @@ import numpy as np
 import os
 import re
 
-
 def read_csv_file(csv_out_file):
     data_dict = {}
 
-    if not os.path.exists(csv_out_file):
-        raise FileNotFoundError(f"File {csv_out_file} not found")
+    #if not os.path.exists(csv_out_file):
+    #    current_path = os.getcwd()
+    #    # Print the current path
+    #    print(f"The current working directory is: {current_path}")
+    #    for file in os.listdir('benchmarks/hohlraum/result/logs'):
+    #        print(file)
+    #    #print(os.listdir('benchmarks/hohlraum/result/logs'))
+    #
+    #    raise FileNotFoundError(f"File {csv_out_file} not found")
     print(csv_out_file)
+    for file in os.listdir('benchmarks/hohlraum/result/logs'):
+        print(file)
     with open(csv_out_file, "r") as file:
         csv_reader = csv.reader(file)
 
