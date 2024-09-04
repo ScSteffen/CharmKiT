@@ -12,7 +12,7 @@ def run_cpp_simulation(config_file):
     # Print the current path
     print(f"The current working directory is: {current_path}")
     print(config_file)
-    cpp_executable_path = " ./KiT-RT/build/KiT-RT"  # mpirun -np 4
+    cpp_executable_path = "./KiT-RT/build/KiT-RT"  # mpirun -np 4
 
     # Command to run the C++ executable with the provided config file
     command = [cpp_executable_path, config_file]
