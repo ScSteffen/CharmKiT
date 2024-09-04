@@ -1,5 +1,6 @@
 cl_fine = 0.02;
-cl_coarse =cl_fine*2;
+cl_coarse =cl_fine;
+cl_outer = 2.0*cl_fine;
 
 upper_left_red = 0.4;
 lower_left_red = -0.4;
@@ -49,10 +50,10 @@ Point(24) = {capsule_x+0.15,capsule_y-0.35, 0, cl_coarse};
 
 
 // Helper points and lines
-Point(25) = {horizontal_left_red, 0.6, 0, cl_fine};
-Point(26) = {horizontal_left_red, -0.6, 0, cl_fine};
-Point(27) = {horizontal_right_red, 0.6, 0, cl_fine};
-Point(28) = {horizontal_right_red, -0.6, 0, cl_fine};
+Point(25) = {horizontal_left_red, 0.6, 0, cl_outer};
+Point(26) = {horizontal_left_red, -0.6, 0, cl_outer};
+Point(27) = {horizontal_right_red, 0.6, 0, cl_outer};
+Point(28) = {horizontal_right_red, -0.6, 0, cl_outer};
 
 Point(37) = {horizontal_left_red, 0.65, 0, cl_coarse};
 Point(38) = {horizontal_left_red, -0.65, 0, cl_coarse};
