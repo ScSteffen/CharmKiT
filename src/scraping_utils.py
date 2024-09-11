@@ -17,9 +17,9 @@ def read_csv_file(csv_out_file):
     #    #print(os.listdir('benchmarks/hohlraum/result/logs'))
     #
     #    raise FileNotFoundError(f"File {csv_out_file} not found")
-    print(csv_out_file)
-    for file in os.listdir('benchmarks/hohlraum/result/logs'):
-        print(file)
+    #print(csv_out_file)
+    #for file in os.listdir('benchmarks/hohlraum/result/logs'):
+        #print(file)
     with open(csv_out_file, "r") as file:
         csv_reader = csv.reader(file)
 

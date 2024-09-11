@@ -114,8 +114,8 @@ def wait_for_slurm_jobs(user, sleep_interval=30):
 
             # Print the current status
             print("Waiting for SLURM jobs to finish. Current jobs:")
-            #for line in lines:
-            #    print(line)
+            for line in lines:
+                print(line)
 
             # Wait for the specified interval before checking again
             time.sleep(sleep_interval)

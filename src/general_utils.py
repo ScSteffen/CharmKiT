@@ -230,9 +230,10 @@ def create_lattice_samples_from_param_range(
 def delete_slurm_scripts(folder_path):
     # Get a list of all files in the folder
     files = os.listdir(folder_path)
-
+    print("Delte all sh files in ", folder_path)
     # Iterate over the files and delete .sh files
     for file in files:
         if file.endswith(".sh"):
             file_path = os.path.join(folder_path, file)
+         
             os.remove(file_path)
