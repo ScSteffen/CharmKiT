@@ -50,7 +50,7 @@ def run_cpp_simulation_containerized(config_file):
         # You can handle the error as needed
 
 
-def execute_slurm_scripts(directory, user, max_jobs=30, sleep_time=30):
+def execute_slurm_scripts(directory, user, max_jobs=60, sleep_time=30):
     """
     Execute all SLURM scripts in the specified directory.
     If the number of jobs in the queue for the user is 10 or more, wait and sleep for 30 seconds.
@@ -58,7 +58,7 @@ def execute_slurm_scripts(directory, user, max_jobs=30, sleep_time=30):
     # Get the list of SLURM scripts in the directory
     slurm_scripts = [f for f in os.listdir(directory) if f.endswith(".sh")]
 
-    print(slurm_scripts)
+    #print(slurm_scripts)
 
     for script in slurm_scripts:
         script_path = os.path.join(directory, script)
