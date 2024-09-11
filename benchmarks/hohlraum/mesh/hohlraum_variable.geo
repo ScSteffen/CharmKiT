@@ -1,6 +1,7 @@
 cl_fine = 0.02;
 cl_coarse =cl_fine;
 cl_outer = 2.0*cl_fine;
+cl_red = 0.5*cl_fine;
 
 upper_left_red = 0.4;
 lower_left_red = -0.4;
@@ -27,15 +28,15 @@ Point(7) = {-0.65, -0.6, 0, cl_coarse};
 Point(8) = {0.65, -0.6, 0, cl_coarse};
 
 // Red
-Point(9) = {-0.65, upper_left_red, 0, cl_fine};
+Point(9) = {-0.65, upper_left_red, 0, cl_red};
 Point(10) = {horizontal_left_red, upper_left_red, 0, cl_fine};
 Point(11) = {horizontal_left_red, lower_left_red, 0, cl_fine};
-Point(12) = {-0.65, lower_left_red, 0, cl_fine};
+Point(12) = {-0.65, lower_left_red, 0, cl_red};
 
-Point(13) = {0.65, upper_right_red, 0, cl_fine};
+Point(13) = {0.65, upper_right_red, 0, cl_red};
 Point(14) = {horizontal_right_red, upper_right_red, 0, cl_fine};
 Point(15) = {horizontal_right_red,lower_right_red, 0, cl_fine};
-Point(16) = {0.65, lower_right_red, 0, cl_fine};
+Point(16) = {0.65, lower_right_red, 0, cl_red};
 
 // Green (and blue)
 Point(17) = {capsule_x-0.2,capsule_y-0.4, 0, cl_fine};
@@ -50,15 +51,15 @@ Point(24) = {capsule_x+0.15,capsule_y-0.35, 0, cl_coarse};
 
 
 // Helper points and lines
-Point(25) = {horizontal_left_red, 0.6, 0, cl_outer};
-Point(26) = {horizontal_left_red, -0.6, 0, cl_outer};
-Point(27) = {horizontal_right_red, 0.6, 0, cl_outer};
-Point(28) = {horizontal_right_red, -0.6, 0, cl_outer};
+Point(25) = {horizontal_left_red, 0.6, 0, cl_coarse};
+Point(26) = {horizontal_left_red, -0.6, 0, cl_coarse};
+Point(27) = {horizontal_right_red, 0.6, 0, cl_coarse};
+Point(28) = {horizontal_right_red, -0.6, 0, cl_coarse};
 
-Point(37) = {horizontal_left_red, 0.65, 0, cl_coarse};
-Point(38) = {horizontal_left_red, -0.65, 0, cl_coarse};
-Point(39) = {horizontal_right_red, 0.65, 0, cl_coarse};
-Point(40) = {horizontal_right_red, -0.65, 0, cl_coarse};
+Point(37) = {horizontal_left_red, 0.65, 0, cl_outer};
+Point(38) = {horizontal_left_red, -0.65, 0, cl_outer};
+Point(39) = {horizontal_right_red, 0.65, 0, cl_outer};
+Point(40) = {horizontal_right_red, -0.65, 0, cl_outer};
 
 
 Point(56) = { cl_coarse, -0.6 , 0, cl_coarse};
