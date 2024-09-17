@@ -316,12 +316,12 @@ def update_var_quarter_hohlraum_mesh_file(
     return unique_name + ".su2"
 
 
-def update_lattice_mesh_file(n_cell, filepath):
-    filename_geo = filepath + "lattice.geo"
-    filename_geo_backup = filepath + "lattice_backup.geo"
+def update_lattice_mesh_file(n_cell, filepath, rectangular_mesh=False):
+    filename_geo = filepath + "lattice_triangular.geo"
+    filename_geo_backup = filepath + "lattice_triangular_backup.geo"
 
-    filename_su2 = filepath + f"lattice_n{n_cell}.su2"
-    filename_con = filepath + f"lattice_n{n_cell}.con"
+    filename_su2 = filepath + f"lattice_p{n_cell}.su2"
+    filename_con = filepath + f"lattice_p{n_cell}.con"
 
     if not os.path.exists(filename_su2):
         shutil.copy(filename_geo, filename_geo_backup)
@@ -331,8 +331,8 @@ def update_lattice_mesh_file(n_cell, filepath):
 
         with open(filename_geo_backup, "w") as file:
             for line in lines:
-                if line.startswith("n_recombine"):
-                    line = f"n_recombine = {n_cell};\n"
+                if line.startswith("cl_fine"):
+                    line = f"cl_fine = {n_cell};\n"
                 file.write(line)
 
         # Remove the .con file
@@ -344,7 +344,7 @@ def update_lattice_mesh_file(n_cell, filepath):
         )
         os.remove(filename_geo_backup)
 
-    return f"lattice_n{n_cell}.su2"
+    return f"lattice_p{n_cell}.su2"
 
 
 def update_half_lattice_mesh_file(n_cell, filepath, rectangular_mesh=False):
@@ -406,7 +406,7 @@ def write_slurm_file(output_slurm_dir, unique_name, subfolder, singularity=True)
             )
 
         else:
-            lines[-1] = "./KiT-RT/build/KiT-RT " + subfolder + unique_name + ".cfg\n"
+            lines[-1] = "srun ./KiT-RT/build/KiT-RT " + subfolder + unique_name + ".cfg\n"
 
     # Write the modified lines to the output file
     with open(output_slurm_dir + unique_name + ".sh", "w") as file:

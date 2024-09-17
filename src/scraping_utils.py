@@ -5,13 +5,21 @@ import numpy as np
 import os
 import re
 
-
 def read_csv_file(csv_out_file):
     data_dict = {}
 
-    if not os.path.exists(csv_out_file):
-        raise FileNotFoundError(f"File {csv_out_file} not found")
-    print(csv_out_file)
+    #if not os.path.exists(csv_out_file):
+    #    current_path = os.getcwd()
+    #    # Print the current path
+    #    print(f"The current working directory is: {current_path}")
+    #    for file in os.listdir('benchmarks/hohlraum/result/logs'):
+    #        print(file)
+    #    #print(os.listdir('benchmarks/hohlraum/result/logs'))
+    #
+    #    raise FileNotFoundError(f"File {csv_out_file} not found")
+    #print(csv_out_file)
+    #for file in os.listdir('benchmarks/hohlraum/result/logs'):
+        #print(file)
     with open(csv_out_file, "r") as file:
         csv_reader = csv.reader(file)
 
@@ -120,6 +128,13 @@ def time_average(df, column_names, N, t_final, dt):
 
 
 def extract_time_step(log_file_path):
+    """
+    Extracts the time step value from a log file.
+    Args:
+        log_file_path (str): The path to the log file.
+    Returns:
+        float: The extracted time step value, or None if no matching line is found.
+    """
     search_string = "Corresponding maximal time-step:"
     float_value = None
 
@@ -135,8 +150,9 @@ def extract_time_step(log_file_path):
                     break  # Assuming there's only one such line in the log file
 
     if float_value is not None:
-        print(f"Extracted float value: {float_value}")
+        # print(f"Extracted float value (time step): {float_value}")
+        return float_value
     else:
-        print("No matching line found.")
-
+        print("No matching line found to textract time step. Critical error.")
+        exit(1)
     return float_value

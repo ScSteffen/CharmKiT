@@ -23,30 +23,26 @@ def main():
     singularity_hpc = not args.no_singularity_hpc
 
     # Define parameter ranges
-    parameter_range_n_cell = [
-        0.09,
-        0.08,
-        0.07,
-        0.06,
-        0.05,
-        0.04,
-        0.03,
+    parameter_range_n_cell =  [
         0.01,
         0.0075,
         0.005,
         0.0025,
-        0.002,
+        0.001,
+        0.00075,
+        0.0005,
+        0.00025
     ]  # characteristic length of the cells
     # GAUSS LEGENDRE  2D quadrature order (MUST BE EVEN)
-    parameter_range_quad_order = [10]  # , 20, 30, 40, 50]
-    parameter_range_green_center_x = [0.1, -0.1, 0.05]  # [0.0, 0.01, -0.01]
-    parameter_range_green_center_y = [0.05]  # [0.0, 0.01, -0.01]
-    parameter_range_red_right_top = [0.5]  # [0.4, 0.45, 0.35]
-    parameter_range_red_right_bottom = [-0.5]  # [-0.4, -0.45, -0.35]
-    parameter_range_red_left_top = [0.3]  # [0.4, 0.45, 0.35]
-    parameter_range_red_left_bottom = [-0.3]  # [-0.4, -0.45, -0.35]
-    parameter_range_horizontal_left = [-0.5]  # [-0.61, -0.6, -0.59]
-    parameter_range_horizontal_right = [0.62]  # [0.61, 0.6, 0.59]
+    parameter_range_quad_order = [4, 8, 12, 16, 20, 24, 28,32,40,44,48,52,56,60,64,68,72,76,80]  # , 20, 30, 40, 50]
+    parameter_range_green_center_x = [0.0]  # [0.0, 0.01, -0.01]
+    parameter_range_green_center_y = [0.0]  # [0.0, 0.01, -0.01]
+    parameter_range_red_right_top = [0.4]  # [0.4, 0.45, 0.35]
+    parameter_range_red_right_bottom = [-0.4]  # [-0.4, -0.45, -0.35]
+    parameter_range_red_left_top = [0.4]  # [0.4, 0.45, 0.35]
+    parameter_range_red_left_bottom = [-0.4]  # [-0.4, -0.45, -0.35]
+    parameter_range_horizontal_left = [-0.6]  # [-0.6, -0.61, -0.59]
+    parameter_range_horizontal_right = [0.6]  # [0.6, 0.61, 0.59]
 
     if load_from_npz:
         design_params, design_param_names = load_hohlraum_samples_from_npz(
@@ -75,7 +71,7 @@ def main():
         call_models(
             design_params, hpc_operation_count=1, singularity_hpc=singularity_hpc
         )
-        #wait_for_slurm_jobs(user=user, sleep_interval=10)
+        # wait_for_slurm_jobs(user=user, sleep_interval=10)
 
         if user:
             print("Executing slurm scripts with user " + user)
@@ -85,7 +81,9 @@ def main():
             print("Username could not be read from slurm config file.")
         qois = call_models(design_params, hpc_operation_count=2)
     else:
-        qois = call_models(design_params, hpc_operation_count=0)
+        qois = call_models(
+            design_params, hpc_operation_count=0, singularity_hpc=singularity_hpc
+        )
 
     print("design parameter matrix")
     print(design_param_names)
