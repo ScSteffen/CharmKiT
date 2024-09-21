@@ -4,7 +4,8 @@ git clone git@github.com:CSMMLab/KiT-RT.git
 cd KiT-RT
 
 # checkout the branch new_radiation_test_cases
-git checkout new_radiation_test_cases
+git fetch origin
+git checkout hot_fix_mpi_deploy
 # load all submodules
 git submodule update --init --recursive
 
