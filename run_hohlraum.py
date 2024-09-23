@@ -23,7 +23,7 @@ def main():
     singularity_hpc = not args.no_singularity_hpc
 
     # Define parameter ranges
-    parameter_range_n_cell =  [
+    parameter_range_n_cell = [
         0.01,
         0.0075,
         0.005,
