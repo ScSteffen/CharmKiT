@@ -32,7 +32,9 @@ Curve Loop(1) = {1, 2, 3, 4};
 //+
 Plane Surface(1) = {1};
 //+
-Physical Curve(5) = {1, 2, 3, 4};
+Physical Curve("inflow", 60) = {1,3};
 //+
+Physical Curve("void", 60) += { 2,4};
+//+//+
 Transfinite Surface {1};
 Recombine Surface "*";
