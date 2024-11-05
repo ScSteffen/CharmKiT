@@ -143,7 +143,7 @@ def model(parameters):
                 float(log_data["Cumulated_absorption_center"]),
                 float(log_data["Cumulated_absorption_vertical_wall"]),
                 float(log_data["Cumulated_absorption_horizontal_wall"]),
-                float(log_data["Var. absorption green"]),
+               # float(log_data["Var. absorption green"]),
             ]
 
             for i in range(N):
@@ -207,7 +207,7 @@ def get_qois_col_names():
             "Cumulated_absorption_center",
             "Cumulated_absorption_vertical_wall",
             "Cumulated_absorption_horizontal_wall",
-            "Variation_absorption_green",
+           # "Variation_absorption_green",
             "Probe0_u0_N1",
             "Probe0_u0_N2",
             "Probe0_u0_N3",
