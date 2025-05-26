@@ -94,21 +94,22 @@ def load_hohlraum_samples_from_csv(csv_file="input_samples.csv"):
     df = pd.read_csv(csv_file, header=None)
 
     # Ensure the CSV has the expected shape
-    assert df.shape == (
-        128,
-        6,
-    ), f"CSV file must have shape (128, 6), but got {df.shape}"
+    # assert df.shape == (
+    #    128,
+    #    6,
+    # ), f"CSV file must have shape (128, 6), but got {df.shape}"
 
     # Transpose to shape (6, 128)
     data = df.to_numpy().T  # shape (6, 128)
 
+    rows = data.shape[1]
     # Create an 8 x 128 array initialized to zero
-    result = np.zeros((10, 128))
+    result = np.zeros((10, rows))
 
     # Fill in the first 6 rows with the CSV data
     result[:6, :] = data
-    result[8, :] = 0.004 * np.ones((1, 128))
-    result[9, :] = 20 * np.ones((1, 128))
+    result[8, :] = 0.007 * np.ones((1, rows))
+    result[9, :] = 14 * np.ones((1, rows))
 
     design_param_names = [
         "pos_red_left_top",
