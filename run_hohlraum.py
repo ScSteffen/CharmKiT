@@ -7,6 +7,7 @@ from src.simulation_utils import execute_slurm_scripts, wait_for_slurm_jobs
 from src.general_utils import (
     create_hohlraum_samples_from_param_range,
     load_hohlraum_samples_from_npz,
+    load_hohlraum_samples_from_csv,
     delete_slurm_scripts,
 )
 from src.general_utils import parse_args
@@ -24,17 +25,20 @@ def main():
 
     # Define parameter ranges
     parameter_range_n_cell = [
-        0.01,
-        0.0075,
         0.005,
-        0.0025,
-        0.001,
-        0.00075,
-        0.0005,
-        0.00025
+        # 0.0075,
+        # 0.005,
+        # 0.0025,
+        # 0.001,
+        # 0.00075,
+        # 0.0005,
+        # 0.00025
     ]  # characteristic length of the cells
     # GAUSS LEGENDRE  2D quadrature order (MUST BE EVEN)
-    parameter_range_quad_order = [4, 8, 12, 16, 20, 24, 28,32,40,44,48,52,56,60,64,68,72,76,80]  # , 20, 30, 40, 50]
+    parameter_range_quad_order = [
+        6
+    ]  # [4, 8, 12, 16, 20, 24, 28,32,40,44,48,52,56,60,64,68,72,76,80]
+    # parameter_range_quad_order = [0.5 * param for param in parameter_range_quad_order]
     parameter_range_green_center_x = [0.0]  # [0.0, 0.01, -0.01]
     parameter_range_green_center_y = [0.0]  # [0.0, 0.01, -0.01]
     parameter_range_red_right_top = [0.4]  # [0.4, 0.45, 0.35]
@@ -45,8 +49,11 @@ def main():
     parameter_range_horizontal_right = [0.6]  # [0.6, 0.61, 0.59]
 
     if load_from_npz:
-        design_params, design_param_names = load_hohlraum_samples_from_npz(
-            "sampling/pilot-study-samples-hohlraum-05-29-24.npz"
+        design_params, design_param_names = (
+            load_hohlraum_samples_from_csv()
+            # load_hohlraum_samples_from_npz(
+            #    "sampling/pilot-study-samples-hohlraum-05-29-24.npz"
+            # )
         )
     else:
         design_params, design_param_names = create_hohlraum_samples_from_param_range(

@@ -76,7 +76,7 @@ def main():
     # ]
     # GAUSS LEGENDRE  2D quadrature order (MUST BE EVEN)
 
-    parameter_range_quad_order = [80] #[4, 8, 12, 16, 20, 24, 28,32,40,48,56,64,72,80]  # [4, 8, 12, 16, 20, 24, 28]
+    parameter_range_quad_order = [4] #[4, 8, 12, 16, 20, 24, 28,32,40,48,56,64,72,80]  # [4, 8, 12, 16, 20, 24, 28]
     #    20,
     #    30,
     #    40,

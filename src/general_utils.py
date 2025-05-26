@@ -88,6 +88,44 @@ def load_hohlraum_samples_from_npz(npz_file):
     return samples_full, np.array(design_param_names)
 
 
+def load_hohlraum_samples_from_csv(csv_file="input_samples.csv"):
+    import pandas as pd
+
+    df = pd.read_csv(csv_file, header=None)
+
+    # Ensure the CSV has the expected shape
+    assert df.shape == (
+        128,
+        6,
+    ), f"CSV file must have shape (128, 6), but got {df.shape}"
+
+    # Transpose to shape (6, 128)
+    data = df.to_numpy().T  # shape (6, 128)
+
+    # Create an 8 x 128 array initialized to zero
+    result = np.zeros((10, 128))
+
+    # Fill in the first 6 rows with the CSV data
+    result[:6, :] = data
+    result[8, :] = 0.004 * np.ones((1, 128))
+    result[9, :] = 20 * np.ones((1, 128))
+
+    design_param_names = [
+        "pos_red_left_top",
+        "pos_red_left_bottom",
+        "pos_red_right_top",
+        "pos_red_right_bottom",
+        "pos_red_left_horizontal",
+        "pos_red_right_horizontal",
+        "pos_green_x",
+        "pos_green_y",
+        "grid_cl",
+        "grid_quad_order",
+    ]
+
+    return result, np.array(design_param_names)
+
+
 def load_quarter_hohlraum_samples_from_npz(npz_file):
     samples = np.load(npz_file)["samples"]
     samples[2, :] = 0.4 + (0.2 - samples[2, :])  # tr
@@ -235,5 +273,5 @@ def delete_slurm_scripts(folder_path):
     for file in files:
         if file.endswith(".sh"):
             file_path = os.path.join(folder_path, file)
-         
+
             os.remove(file_path)
