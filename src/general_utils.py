@@ -16,9 +16,9 @@ def parse_args():
         "--load-from-npz", action="store_true", help="Flag to load from NPZ file"
     )
     parser.add_argument(
-        "--no-singularity-hpc",
+        "--no-singularity",
         action="store_true",
-        help="Flag to use Singularity on HPC",
+        help="Flag to use Singularity Container for KiT-RT",
     )
 
     args = parser.parse_args()
